@@ -6,17 +6,6 @@ export default function CreatePasscode() {
   const navigate = useNavigate();
   const [passcode, setPasscode] = useState("");
 
-  // Allowed characters: A-Z, a-z, 0-9
-  const handleKeyPress = (char) => {
-    if (passcode.length < 6) {
-      setPasscode(passcode + char);
-    }
-  };
-
-  const handleBackspace = () => {
-    setPasscode(passcode.slice(0, -1));
-  };
-
   return (
     <div className="flex flex-col w-full min-h-screen p-6">
       {/* Top Navigation */}
@@ -39,32 +28,16 @@ export default function CreatePasscode() {
         This will be used for logging in, so please don’t share it with anyone.
       </p>
 
-      {/* Passcode Dots */}
-      <div className="flex justify-center space-x-3 my-6">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div
-            key={index}
-            className={`w-3 h-3 rounded-full border-2 ${
-              passcode.length > index ? "bg-[#18A0FB] border-[#18A0FB]" : "border-gray-400"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Alphanumeric Keyboard */}
-      <div className="grid grid-cols-3 gap-3 mt-4">
-        {[
-          ..."1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
-          "←", // Backspace
-        ].map((char, index) => (
-          <button
-            key={index}
-            onClick={() => (char === "←" ? handleBackspace() : handleKeyPress(char))}
-            className="w-full h-12 flex items-center justify-center rounded-lg text-lg font-semibold bg-gray-200"
-          >
-            {char}
-          </button>
-        ))}
+      {/* Passcode Input Field */}
+      <div className="flex justify-center my-6">
+        <input
+          type="password"
+          maxLength={6}
+          value={passcode}
+          onChange={(e) => setPasscode(e.target.value.replace(/[^a-zA-Z0-9]/g, ""))}
+          className="text-center text-xl tracking-widest w-3/4 p-3 border rounded-lg"
+          placeholder="••••••"
+        />
       </div>
 
       {/* Next Button */}
