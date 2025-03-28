@@ -1,6 +1,9 @@
-import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import logo from "../assets/logo.png"; // Import the logo image
 
 export default function WelcomePage() {
+  const navigate = useNavigate(); // Initialize navigation
+
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-white">
       {/* Top section with gradient and logo */}
@@ -20,11 +23,18 @@ export default function WelcomePage() {
           </p>
         </div>
 
+        {/* Buttons with navigation */}
         <div className="w-full flex gap-4 mt-8">
-          <button className="flex-1 border border-[#18A0FB] text-[#18A0FB] h-12 rounded-lg">
+          <button 
+            className="flex-1 border border-[#18A0FB] text-[#18A0FB] h-12 rounded-lg"
+            onClick={() => navigate("/login")} 
+          >
             Login
           </button>
-          <button className="flex-1 bg-gradient-to-r from-[#0A3A5A] to-[#18A0FB] text-white h-12 rounded-lg shadow-md">
+          <button 
+            className="flex-1 bg-gradient-to-r from-[#0A3A5A] to-[#18A0FB] text-white h-12 rounded-lg shadow-md"
+            onClick={() => navigate("/signup1")}
+          >
             Get Started
           </button>
         </div>

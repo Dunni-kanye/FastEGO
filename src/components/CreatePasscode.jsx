@@ -48,7 +48,7 @@ export default function CreatePasscode() {
             : "bg-gray-300 cursor-not-allowed"
         }`}
         disabled={passcode.length < 6}
-        onClick={() => navigate("/confirm-passcode")}
+        onClick={() => navigate("/Userinfo")}
       >
         Next
       </button>
